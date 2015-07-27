@@ -1,0 +1,35 @@
+body {
+    background: #F8F7EE url(../../image/pattern.png);
+    color: #7A7A68;
+    margin: 150px;
+}
+#registerTitle {
+    font: normal 1.0em arial, sans-serif;
+    margin: 0 100px;
+    border: solid 0 #000;
+    border-right-width: 2px;
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    height: 200px;
+    padding: 80px;
+}
+form#register {
+    display: inline-block;
+    vertical-align:top;
+    padding: 20px 0 20px 0;
+}
+div.formContent {
+    padding: 10px 0 10px 0;
+}
+label.labelContent {
+    color: #269abc;
+    width: 80px;
+    display: inline-block;
+}
+#registerButton {
+    text-align: center;
+}
+#registerButton button {
+    color: red;
+}
