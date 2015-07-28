@@ -1,6 +1,7 @@
 package com.tw.core.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
@@ -28,24 +29,16 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody String getUsers() {
 
-        JSONSerializer serializer = new JSONSerializer();
-        List<User> users = userService.getUsers();
-
-//        for (int i = 0; i < users.size(); i++) {
-//            Integer.toString(users.get(i).getEmployee().getAge());
-//        }
-
-        return  serializer.exclude("age").serialize(users);
-//                Gson gson = new Gson();
-//        String result = gson.toJson("[");
+//        JSONSerializer serializer = new JSONSerializer();
 //        List<User> users = userService.getUsers();
-//        for (int i = 0; i < users.size(); i++) {
-//            users.get(i).setEmployee(users.get(i).getEmployee());
-//            result += gson.toJson(users.get(i));
-//        }
-//        result += gson.toJson("]");
-//        return result;
-//        return gson.toJson(users);
+//
+//        return  serializer.exclude("age").serialize(users);
+
+        Gson gson = new Gson();
+//        GsonBuilder gsonBuilder = new GsonBuilder();
+//        Gson gson = gsonBuilder.registerTypeAdapter(User.class, new AutoAdapter()).create();
+        List<User> users = userService.getUsers();
+        return gson.toJson(users);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
