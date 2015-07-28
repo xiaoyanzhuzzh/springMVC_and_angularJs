@@ -1,0 +1,40 @@
+<div>
+    <form id="addUserForm">
+        <div class="addUserDiv">
+            类别：<select ng-model="itemInfo.category.name" ng-options="employee.name as employee.name for employee in employees">
+        </select>
+        </div>
+        <div class="addUserDiv">名称：<input ng-model="user.name"></div>
+        <div class="addUserDiv">密码：<input ng-model="user.password"></div>
+        <div class="addUserDiv">
+            <button id="addUserButton" ng-click="addNewItem(itemInfo)">添加</button>
+            <button id="cancelAddUserButton" ng-click="cancelButton()">取消</button>
+        </div>
+    </form>
+    <table id="userTable" cellspacing="0">
+        <caption></caption>
+        <tr>
+            <th>用户名</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>邮箱</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td class="row" ng-show="false">{{user.id}}</td>
+            <td class="row">{{user.name}}</td>
+            <td class="row">{{user.employee.name}}</td>
+            <td class="row">{{user.employee.role}}</td>
+            <td class="row">{{user.employee.gender}}</td>
+            <td class="row">{{user.employee.age}}</td>
+            <td class="row">{{user.employee.email}}</td>
+            <td class="row">
+                <button type="button" ng-click="">修改</button>
+                <button type="button" ng-click="">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
