@@ -26,27 +26,12 @@ public class EmployeeController {
         return gson.toJson(employees);
     }
 
-//    @RequestMapping(value = "/create", method = RequestMethod.GET)
-//    public ModelAndView getCreateUserPage(HttpServletRequest request) {
-//        if(request.getSession().getAttribute("currentUser") == null){
-//
-//            return new ModelAndView("redirect:/login");
-//        } else {
-//
-//            List<Employee> currentEmployees = new ArrayList<Employee>();
-//
-//            List<Employee> employees = employeeService.getEmployees();
-//
-//            for(int i = 0; i < employees.size(); i++) {
-//
-//                if(!userService.getUserByEmployee(employees.get(i))) {
-//
-//                    currentEmployees.add(employees.get(i));
-//                }
-//            }
-//            return new ModelAndView("createUser", "employees", currentEmployees);
-//        }
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public void createEmployee(@RequestBody Employee employee){
+
+        System.out.println(employee);
+        employeeService.createEmployee(employee);
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateEmployeePage(HttpServletRequest request) {

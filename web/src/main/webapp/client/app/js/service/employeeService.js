@@ -7,6 +7,7 @@ angular.module('userManagement')
 
             $http.get('/web/api/employees')
                 .success(function(data) {
+
                     callback(data);
                 });
         }
@@ -19,70 +20,27 @@ angular.module('userManagement')
             });
         };
 
-        this.setCartItems = function(item) {
+        function addEmployeeData(employee, callback) {
 
-            this.getCartItems(function(data) {
-
-                updateCartItems(item, data);
-            });
-        };
-
-        this.addCartItemNumber = function(id, callback) {
-
-            this.getCartItems(function(data) {
-
-                modifyCartItemNumberData(addCartItemNumberData(data, id), function(){
+            $http({
+                method: 'POST', url: '/web/api/employees',
+                data:{
+                    id: null,
+                    name: employee.name,
+                    gender: employee.gender,
+                    role: employee.role,
+                    age: employee.age,
+                    email: employee.email
+                },
+                success: function() {
                     callback();
-                });
+                }
             });
+        }
+
+        this.addEmployee = function(employee) {
+
+            addEmployeeData(employee);
         };
 
-        this.reduceCartItemNumber = function(id, callback) {
-
-            this.getCartItems(function(data) {
-
-                modifyCartItemNumberData(reduceCartItemNumberData(data, id), function(){
-                    callback();
-                });
-            });
-        };
-
-        this.changeCartItemNumber = function(changeCartItem, callback) {
-
-            modifyCartItemNumberData(changeCartItem ,function(){
-                callback();
-            });
-        };
-
-        this.deleteCartItem = function(id) {
-
-            deleteCartItemData(id);
-        };
-
-        this.emptyCartItems = function() {
-
-            emptyCartItemsData();
-        };
-
-        this.getTotalNumber = function(array){
-            var totalNum = 0;
-            if(!array){
-                array = [];
-            }
-            for(var i = 0; i < array.length; i++){
-                totalNum += array[i].num;
-            }
-            return totalNum;
-        };
-
-        this.getTotalMoney = function(array){
-            var total = 0;
-            if(!array){
-                array = [];
-            }
-            for(var i = 0; i < array.length; i++){
-                total += array[i].num * array[i].item.price;
-            }
-            return total;
-        };
     });

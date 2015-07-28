@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div>
+    <form id="addEmployeeForm" action="">
+        <div class="addEmployeeDiv">姓名：<input type="text" ng-model="employee.name"></div>
+        <div class="addEmployeeDiv">性别：
+            <input type="radio" ng-model="employee.gender" value="male"> 男
+            <input type="radio" ng-model="employee.gender" value="female"> 女
+        </div>
+        <div class="addEmployeeDiv">职位：
+            <input type="radio" ng-model="employee.role" value="coach"> coach
+            <input type="radio" ng-model="employee.role" value="ops"> ops
+            <input type="radio" ng-model="employee.role" value="hr"> hr
+        </div>
+        <div class="addEmployeeDiv">年龄：<input type="text" ng-model="employee.age"></div>
+        <div class="addEmployeeDiv">邮箱：<input type="email" ng-model="employee.email"></div>
+        <div class="addEmployeeDiv">
+            <button id="addEmployeeButton" ng-click="addNewEmployee(employee)">添加</button>
+            <button id="cancelAddEmployeeButton" ng-click="cancelButton()">取消</button>
+        </div>
+    </form>
+    <table id="employeeTable" cellspacing="0">
+        <caption></caption>
+        <tr>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>邮箱</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="employee in employees">
+            <td class="row" ng-show="false">{{employee.id}}</td>
+            <td class="row">{{employee.name}}</td>
+            <td class="row">{{employee.role}}</td>
+            <td class="row">{{employee.gender}}</td>
+            <td class="row">{{employee.age}}</td>
+            <td class="row">{{employee.email}}</td>
+            <td class="row">
+                <button type="button" ng-click="">修改</button>
+                <button type="button" ng-click="">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
-</body>
-</html>

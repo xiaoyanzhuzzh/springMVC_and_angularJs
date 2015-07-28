@@ -82,19 +82,19 @@ public class UserController {
         return "yes";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserById(HttpServletRequest request,
-                                    @PathVariable int id){
-
-        if(request.getSession().getAttribute("currentUser") == null){
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            User user = userService.getUserById(id);
-            return new ModelAndView("updateUser", "user", user);
-        }
-    }
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//    public ModelAndView getUserById(HttpServletRequest request,
+//                                    @PathVariable int id){
+//
+//        if(request.getSession().getAttribute("currentUser") == null){
+//
+//            return new ModelAndView("redirect:/login");
+//        } else {
+//
+//            User user = userService.getUserById(id);
+//            return new ModelAndView("updateUser", "user", user);
+//        }
+//    }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView UpdateUser(@RequestParam int id,

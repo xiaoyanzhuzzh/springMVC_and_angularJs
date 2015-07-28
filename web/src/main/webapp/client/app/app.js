@@ -7,11 +7,11 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/users', {
-                templateUrl: '../app/view/user.html',
+                templateUrl: '/web/client/app/view/user.html',
                 controller: 'UserController'
             })
             .when('/employees', {
-                templateUrl: '../app/view/employee.html',
+                templateUrl: '/web/client/app/view/employee.html',
                 controller: 'EmployeeController'
             })
             //.when('/itemsList', {

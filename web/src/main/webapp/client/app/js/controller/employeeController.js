@@ -9,4 +9,14 @@ angular.module('userManagement')
         EmployeeService.getEmployees(function(data) {
             $scope.employees = data;
         });
+
+        $scope.addNewEmployee = function(employee) {
+
+            EmployeeService.addEmployee(employee, function() {
+
+                EmployeeService.getEmployees(function(data) {
+                    $scope.employees = data;
+                })
+            });
+        };
     });
