@@ -1,5 +1,6 @@
 package com.tw.core.controller;
 
+import com.google.gson.Gson;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users")
+
 public class UserController {
     @Autowired
     private UserService userService;
@@ -22,16 +24,17 @@ public class UserController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getAllUsers(HttpServletRequest request){
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody String getUsers() {
 
-        if(request.getSession().getAttribute("currentUser") == null){
+        List<User> users = userService.getUsers();
+        Gson gson = new Gson();
+        return gson.toJson(users);
+    }
 
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            return new ModelAndView("users", "users", userService.getUsers());
-        }
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody User getUserById(@PathVariable int id){
+        return userService.getUserById(id);
     }
 
 

@@ -6,9 +6,9 @@ angular
     ])
     .config(function ($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/users', {
                 templateUrl: '../app/view/home.html',
-                controller: 'HomeCtrl'
+                controller: 'UserController'
             })
             //.when('/itemsList', {
             //    templateUrl: 'client/app/views/itemsList.html',

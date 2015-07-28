@@ -1,3 +1,12 @@
-/**
- * Created by zhihuizhang on 7/27/15.
- */
+'use strict';
+
+angular.module('userManagement')
+    .controller('UserController', function ($scope, UserService) {
+
+        $scope.$emit('to-parent-itemsListActive');
+
+        $scope.users = [];
+        UserService.getUsers(function(data) {
+            $scope.users = data;
+        });
+    });
