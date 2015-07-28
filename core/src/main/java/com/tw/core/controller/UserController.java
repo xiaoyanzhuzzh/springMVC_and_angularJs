@@ -6,6 +6,7 @@ import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.EmployeeService;
 import com.tw.core.service.UserService;
+import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,9 +28,24 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody String getUsers() {
 
+        JSONSerializer serializer = new JSONSerializer();
         List<User> users = userService.getUsers();
-        Gson gson = new Gson();
-        return gson.toJson(users);
+
+//        for (int i = 0; i < users.size(); i++) {
+//            Integer.toString(users.get(i).getEmployee().getAge());
+//        }
+
+        return  serializer.exclude("age").serialize(users);
+//                Gson gson = new Gson();
+//        String result = gson.toJson("[");
+//        List<User> users = userService.getUsers();
+//        for (int i = 0; i < users.size(); i++) {
+//            users.get(i).setEmployee(users.get(i).getEmployee());
+//            result += gson.toJson(users.get(i));
+//        }
+//        result += gson.toJson("]");
+//        return result;
+//        return gson.toJson(users);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

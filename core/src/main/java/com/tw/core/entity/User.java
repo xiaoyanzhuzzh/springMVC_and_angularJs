@@ -29,7 +29,7 @@ public class User {
         this.employee = employee;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     public Employee getEmployee() {
         return employee;
     }
