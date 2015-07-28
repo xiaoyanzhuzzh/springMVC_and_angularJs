@@ -34,6 +34,18 @@ angular.module('userManagement')
             }
         };
 
+        $scope.updateEmployee = function(employee) {
+
+            EmployeeService.updateEmployee(employee, function() {
+
+                EmployeeService.getEmployees(function(data) {
+                    $scope.employees = data;
+                })
+            });
+
+            $scope.showUpdateEmployee = false;
+        };
+
         $scope.cancelUpdateEmployee = function() {
             $scope.showUpdateEmployee = false;
         }

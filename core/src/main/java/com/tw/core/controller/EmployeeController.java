@@ -33,6 +33,12 @@ public class EmployeeController {
         employeeService.createEmployee(employee);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void UpdateEmployee(@RequestBody Employee employee){
+
+        employeeService.updateEmployee(employee);
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateEmployeePage(HttpServletRequest request) {
         if(request.getSession().getAttribute("currentUser") == null){
@@ -64,18 +70,18 @@ public class EmployeeController {
         Employee employee = employeeService.getEmployeeById(id);
         return new ModelAndView("updateEmployee", "employee", employee);
     }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView UpdateEmployee(@RequestParam int id,
-                                       @RequestParam String name,
-                                       @RequestParam String role,
-                                       @RequestParam String gender,
-                                       @RequestParam int age,
-                                       @RequestParam String email){
-
-        Employee employee = new Employee(id, name, gender, age, email, role);
-        employeeService.updateEmployee(employee);
-
-        return new ModelAndView("redirect:/employees/");
-    }
+//
+//    @RequestMapping(value = "/update", method = RequestMethod.POST)
+//    public ModelAndView UpdateEmployee(@RequestParam int id,
+//                                       @RequestParam String name,
+//                                       @RequestParam String role,
+//                                       @RequestParam String gender,
+//                                       @RequestParam int age,
+//                                       @RequestParam String email){
+//
+//        Employee employee = new Employee(id, name, gender, age, email, role);
+//        employeeService.updateEmployee(employee);
+//
+//        return new ModelAndView("redirect:/employees/");
+//    }
 }

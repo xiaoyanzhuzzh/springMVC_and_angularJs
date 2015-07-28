@@ -12,14 +12,6 @@ angular.module('userManagement')
                 });
         }
 
-        this.getEmployees = function(callback) {
-
-            getEmployeesData(function(data) {
-
-                callback(data);
-            });
-        };
-
         function addEmployeeData(employee, callback) {
 
             $http({
@@ -38,9 +30,41 @@ angular.module('userManagement')
             });
         }
 
-        this.addEmployee = function(employee) {
+        function updateEmployeeData(employee) {
 
-            addEmployeeData(employee);
+            $http({
+                method: 'PUT',
+                url: '/web/api/employees/' + employee.id,
+                data: {
+                    id: employee.id,
+                    name: employee.name,
+                    gender: employee.gender,
+                    role: employee.role,
+                    age: employee.age,
+                    email: employee.email
+                },
+                success: function() {
+                    callback();
+                }
+            })
+        }
+
+        this.getEmployees = function(callback) {
+
+            getEmployeesData(function(data) {
+
+                callback(data);
+            });
         };
+
+        this.addEmployee = function(employee, callback) {
+
+            addEmployeeData(employee, callback);
+        };
+
+        this.updateEmployee = function(employee, callback) {
+
+            updateEmployeeData(employee, callback)
+        }
 
     });
