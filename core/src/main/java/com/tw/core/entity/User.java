@@ -1,6 +1,7 @@
 package com.tw.core.entity;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
 
 @Entity
 @Table(name = "users")
@@ -28,7 +29,7 @@ public class User {
         this.employee = employee;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     public Employee getEmployee() {
         return employee;
     }
