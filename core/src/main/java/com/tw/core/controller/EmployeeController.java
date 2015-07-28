@@ -1,5 +1,6 @@
 package com.tw.core.controller;
 
+import com.google.gson.Gson;
 import com.tw.core.entity.Employee;
 import com.tw.core.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,21 +19,37 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAllUsers(HttpServletRequest request){
+    public @ResponseBody String getEmployees(){
 
-        if(request.getSession().getAttribute("currentUser") == null){
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            List<Employee> employees = employeeService.getEmployees();
-            return  new ModelAndView("employees", "employees", employees);
-        }
+        List<Employee> employees = employeeService.getEmployees();
+        Gson gson = new Gson();
+        return gson.toJson(employees);
     }
 
+//    @RequestMapping(value = "/create", method = RequestMethod.GET)
+//    public ModelAndView getCreateUserPage(HttpServletRequest request) {
+//        if(request.getSession().getAttribute("currentUser") == null){
+//
+//            return new ModelAndView("redirect:/login");
+//        } else {
+//
+//            List<Employee> currentEmployees = new ArrayList<Employee>();
+//
+//            List<Employee> employees = employeeService.getEmployees();
+//
+//            for(int i = 0; i < employees.size(); i++) {
+//
+//                if(!userService.getUserByEmployee(employees.get(i))) {
+//
+//                    currentEmployees.add(employees.get(i));
+//                }
+//            }
+//            return new ModelAndView("createUser", "employees", currentEmployees);
+//        }
+//    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView getCreateUserPage(HttpServletRequest request) {
+    public ModelAndView getCreateEmployeePage(HttpServletRequest request) {
         if(request.getSession().getAttribute("currentUser") == null){
 
             return new ModelAndView("redirect:/login");

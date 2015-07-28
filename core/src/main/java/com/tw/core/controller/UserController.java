@@ -49,7 +49,6 @@ public class UserController {
 
             List<Employee> employees = employeeService.getEmployees();
 
-            System.out.println("");
             for(int i = 0; i < employees.size(); i++) {
 
                 if(!userService.getUserByEmployee(employees.get(i))) {
