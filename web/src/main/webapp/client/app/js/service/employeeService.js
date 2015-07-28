@@ -65,6 +65,23 @@ angular.module('userManagement')
         this.updateEmployee = function(employee, callback) {
 
             updateEmployeeData(employee, callback)
-        }
+        };
 
+        this.getEmployeesWithoutAccount = function(users, callback) {
+
+            var employees;
+            getEmployeesData(function (data) {
+
+                employees = data;
+
+                for(var i = 0; i < users.length; i++) {
+
+                    _.remove(employees, function(employee) {
+                        return employee.id === users[i].employee.id;
+                    });
+
+                }
+                callback(employees);
+            });
+        };
     });

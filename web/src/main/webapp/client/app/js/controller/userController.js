@@ -12,10 +12,19 @@ angular.module('userManagement')
         UserService.getUsers(function(data) {
 
             $scope.users = data;
-            EmployeeService.getEmployees(function(employees) {
+            EmployeeService.getEmployeesWithoutAccount(data, function(employees) {
 
                 $scope.employees = employees;
             });
         });
+
+        $scope.addNewUser = function(user) {
+            UserService.addUser(user, function() {
+
+                UserService.getUsers(function(data) {
+                    $scope.users = data;
+                })
+            });
+        }
 
     });

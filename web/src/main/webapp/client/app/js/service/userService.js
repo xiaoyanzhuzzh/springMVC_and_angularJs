@@ -11,12 +11,33 @@ angular.module('userManagement')
                 });
         }
 
+        function addUserData(user, callback) {
+
+            $http({
+                method: 'POST', url: '/web/api/users',
+                data:{
+                    id: null,
+                    name: user.name,
+                    password: user.password,
+                    employee: user.employee
+                },
+                success: function() {
+                    callback();
+                }
+            });
+        }
+
         this.getUsers = function(callback) {
 
             getUsersData(function(data) {
 
                 callback(data);
             });
+        };
+
+        this.addUser = function(user, callback) {
+
+            addUserData(user, callback);
         };
 
         this.setCartItems = function(item) {

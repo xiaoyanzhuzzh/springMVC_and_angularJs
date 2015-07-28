@@ -1,13 +1,11 @@
 package com.tw.core.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.EmployeeService;
 import com.tw.core.service.UserService;
-import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,12 +29,9 @@ public class UserController {
 
 //        JSONSerializer serializer = new JSONSerializer();
 //        List<User> users = userService.getUsers();
-//
 //        return  serializer.exclude("age").serialize(users);
 
         Gson gson = new Gson();
-//        GsonBuilder gsonBuilder = new GsonBuilder();
-//        Gson gson = gsonBuilder.registerTypeAdapter(User.class, new AutoAdapter()).create();
         List<User> users = userService.getUsers();
         return gson.toJson(users);
     }
@@ -46,6 +41,16 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public void getUserById(@RequestBody User user){
+        System.out.println(user);
+
+        if(!userService.getUserByName(user.getName())) {
+
+            user.setPassword(EncryptionHelper.md5(user.getPassword()));
+            userService.createUser(user);
+        }
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView getCreateUserPage(HttpServletRequest request) {
