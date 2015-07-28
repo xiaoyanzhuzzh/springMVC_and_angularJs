@@ -4,6 +4,22 @@ body {
     font: 20px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
 
+#updateEmployeeDiv {
+    text-align: center;
+}
+
+#updateEmployeeForm {
+    margin: 50px 0;
+}
+
+.updateEmployeeDiv {
+    display: inline-block;
+    padding: 0 20px;
+}
+.updateEmployeeDiv label {
+    color: orangered;
+}
+
 a {
     color: #c75f3e;
     font-size: 20px;
@@ -23,11 +39,11 @@ a {
     padding: 10px 45px;
 }
 
-#addEmployeeButton {
+#addEmployeeButton, #updateEmployeeButton {
     color: teal;
 }
 
-#resetEmployeeButton {
+#resetEmployeeButton, #cancelUpdateEmployeeButton {
     color: darkred;
 }
 

@@ -127,11 +127,6 @@ public class ScheduleController {
     public void getUpdateSchedulePage(@PathVariable int id,
                                         HttpServletResponse response) throws IOException {
 
-//        if(request.getSession().getAttribute("currentUser") == null){
-//
-//            return new ModelAndView("redirect:/login");
-//        } else {
-
             Schedule schedule = scheduleService.getScheduleById(id);
 
             Gson gson = new Gson();
@@ -140,10 +135,6 @@ public class ScheduleController {
 
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().write(schedulestr.toString());
-
-//            modelAndView.addObject("courses", courseService.getCourses());
-//            return modelAndView;
-//        }
     }
 
     @RequestMapping(value="/update", method=RequestMethod.POST)

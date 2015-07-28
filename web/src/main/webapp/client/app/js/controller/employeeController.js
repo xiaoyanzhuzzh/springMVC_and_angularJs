@@ -19,4 +19,23 @@ angular.module('userManagement')
                 })
             });
         };
+
+        $scope.showUpdateEmployee = false;
+        $scope.updateCurrentEmployee = function(employee) {
+
+            $scope.showUpdateEmployee = true;
+            $scope.currentEmployee = {
+                id: employee.id,
+                name: employee.name,
+                gender: employee.gender,
+                age: employee.age,
+                email: employee.email,
+                role: employee.role
+            }
+        };
+
+        $scope.cancelUpdateEmployee = function() {
+            $scope.showUpdateEmployee = false;
+        }
+
     });

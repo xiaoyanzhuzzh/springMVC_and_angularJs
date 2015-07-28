@@ -1,3 +1,38 @@
+<div id="updateEmployeeDiv" ng-show="showUpdateEmployee">
+    <form id="updateEmployeeForm" action="">
+        <div class="updateEmployeeDiv" ng-show="false">
+            <label for="id">Id：</label>
+            <input id="id" type="text" ng-model="currentEmployee.id">
+        </div>
+        <div class="updateEmployeeDiv">
+            <label for="name">姓名：</label>
+            <input id="name" type="text" ng-model="currentEmployee.name">
+        </div>
+        <div class="updateEmployeeDiv">
+            <label>性别：</label>
+            <input type="radio" ng-model="currentEmployee.gender" value="male"> 男
+            <input type="radio" ng-model="currentEmployee.gender" value="female"> 女
+        </div>
+        <div class="updateEmployeeDiv">
+            <label>职位：</label>
+            <input type="radio" ng-model="currentEmployee.role" value="coach"> coach
+            <input type="radio" ng-model="currentEmployee.role" value="ops"> ops
+            <input type="radio" ng-model="currentEmployee.role" value="hr"> hr
+        </div>
+        <div class="updateEmployeeDiv">
+            <label for="age">年龄：</label>
+            <input type="text" id="age" ng-model="currentEmployee.age">
+        </div>
+        <div class="updateEmployeeDiv">
+            <label for="email">邮箱：</label>
+            <input type="email" id="email" ng-model="currentEmployee.email">
+        </div>
+        <div class="updateEmployeeDiv">
+            <button id="updateEmployeeButton" ng-click="updateEmployee(currentEmployee)">修改</button>
+            <button id="cancelUpdateEmployeeButton" ng-click="cancelUpdateEmployee()">取消</button>
+        </div>
+    </form>
+</div>
 <div>
     <form id="addEmployeeForm" action="">
         <div class="addEmployeeDiv">姓名：<input type="text" ng-model="employee.name"></div>
@@ -35,8 +70,7 @@
             <td class="row">{{employee.age}}</td>
             <td class="row">{{employee.email}}</td>
             <td class="row">
-                <button type="button" ng-click="">修改</button>
-                <button type="button" ng-click="">删除</button>
+                <button type="button" ng-click="updateCurrentEmployee(employee)">修改</button>
             </td>
         </tr>
     </table>
