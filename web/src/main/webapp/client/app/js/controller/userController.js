@@ -1,13 +1,11 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('UserController', function ($scope, UserService, EmployeeService) {
+    .controller('UserController', function ($scope, $route, UserService, EmployeeService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
-
         $scope.employees = [];
-
         $scope.users = [];
         UserService.getUsers(function(data) {
 
@@ -19,12 +17,29 @@ angular.module('userManagement')
         });
 
         $scope.addNewUser = function(user) {
+
             UserService.addUser(user, function() {
 
                 UserService.getUsers(function(data) {
+
                     $scope.users = data;
-                })
+                    EmployeeService.getEmployeesWithoutAccount(data, function(employees) {
+
+                        $scope.employees = employees;
+                    });
+                });
+
             });
-        }
+        };
+
+        $scope.deleteCurrentUser = function(id) {
+
+            console.log(id);
+            UserService.deleteUser(id);
+            $route.reload();
+        };
+
+        $scope.showUpdateUser = true;
+
 
     });
