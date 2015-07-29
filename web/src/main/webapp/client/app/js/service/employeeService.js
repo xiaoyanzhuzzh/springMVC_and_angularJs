@@ -87,4 +87,11 @@ angular.module('userManagement')
                 callback(employees);
             });
         };
+
+        this.getAllCoaches = function(employees) {
+
+            return _.filter(employees, function(employee) {
+                return employee.role === 'coach';
+            })
+        }
     });
