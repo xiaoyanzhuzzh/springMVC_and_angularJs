@@ -2,13 +2,16 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Employee;
+import com.tw.core.entity.User;
 import com.tw.core.service.CourseService;
 import com.tw.core.service.EmployeeService;
+import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping(value="/courses")
@@ -18,16 +21,14 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private EmployeeService employeeService;
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public ModelAndView getCourses(HttpServletRequest request) {
 
-        if(request.getSession().getAttribute("currentUser") == null){
+    private JSONSerializer serializer = new JSONSerializer();
 
-            return new ModelAndView("redirect:/login");
-        } else {
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody String getCourses() {
 
-            return new ModelAndView("courses", "courses", courseService.getCourses());
-        }
+        List<Course> courses = courseService.getCourses();
+        return  serializer.include("employee").serialize(courses);
     }
 
     @RequestMapping(value="/create", method= RequestMethod.GET)

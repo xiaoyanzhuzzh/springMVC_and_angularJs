@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="addCourseDiv">
+    <form id="addCourseForm">
+        <div class="addCourseDiv">
+            <label>教练：</label>
+            <select ng-model="course.employee" ng-options="employee as employee.name for employee in employees">
+                <option value="">-----请选择-----</option>
+            </select>
+        </div>
+        <div class="addCourseDiv">
+            <label for="courseName">课程：</label>
+            <input id="courseName" ng-model="course.name"></div>
+        <div class="addCourseDiv">
+            <button id="addCourseButton" ng-click="addNewCourse(course)">添加</button>
+            <button id="cancelAddCourseButton" type="reset">重置</button>
+        </div>
+    </form>
+</div>
+<div>
+    <div id="updateCourseDiv">
+        <form id="updateCourseForm" ng-show="showUpdateCourse">
+            <div class="updateCourseDiv" ng-show="false">
+                <label for="id">Id：</label>
+                <input id="id" type="text" ng-model="currentCourse.id">
+            </div>
+            <div class="updateCourseDiv">
+                <label for="name">名称</label>
+                <input id="name" type="text" ng-model="currentCourse.name">
+            </div>
+            <div class="updateCourseDiv">
+                <label>教练：</label>
+                <select ng-model="currentCourse.employee" ng-options="employee as employee.name for employee in employees">
+                    <option value="">-----请选择-----</option>
+                </select>
+            </div>
+            <div class="updateCourseDiv">
+                <button id="updateCourseButton" ng-click="updateCourse(currentCourse)">修改</button>
+                <button id="cancelUpdateCourseButton" ng-click="cancelUpdateCourse()">取消</button>
+            </div>
+        </form>
+    </div>
+    <table id="CourseTable" cellspacing="0">
+        <caption></caption>
+        <tr>
+            <th>课程名称</th>
+            <th>教练</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="course in courses">
+            <td class="row" ng-show="false">{{course.id}}</td>
+            <td class="row" ng-show="false">{{course.employee.id}}</td>
+            <td class="row">{{course.name}}</td>
+            <td class="row">{{course.employee.name}}</td>
+            <td class="row">
+                <button type="button" ng-click="updateCurrentCourse(course)">修改</button>
+                <button type="button" ng-click="deleteCurrentCourse(course)">删除</button>
+            </td>
+        </tr>
+    </table>
 
-</body>
-</html>
+    <!--<div class="modalDialog" id="deleteUserModal" ng-show="showDeletecourseModal">-->
+    <!--<div>-->
+    <!--<a href="#closeDeleteUserModal" title="Close" class="close">X</a>-->
+    <!--<h2>Modal Box</h2>-->
+    <!--<p>确认删除这条用户信息吗？</p>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+

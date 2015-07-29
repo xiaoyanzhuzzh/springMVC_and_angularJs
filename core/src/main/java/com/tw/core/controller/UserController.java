@@ -18,6 +18,7 @@ public class UserController {
 
     @Autowired
     private EmployeeService employeeService;
+
     private JSONSerializer serializer = new JSONSerializer();
 
     @RequestMapping(method = RequestMethod.GET)
