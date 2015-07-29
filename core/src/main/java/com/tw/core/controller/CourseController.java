@@ -2,7 +2,6 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Employee;
-import com.tw.core.entity.User;
 import com.tw.core.service.CourseService;
 import com.tw.core.service.EmployeeService;
 import flexjson.JSONSerializer;
@@ -31,29 +30,14 @@ public class CourseController {
         return  serializer.include("employee").serialize(courses);
     }
 
-    @RequestMapping(value="/create", method= RequestMethod.GET)
-    public ModelAndView getCreateCoursePage(HttpServletRequest request) {
+    @RequestMapping(method = RequestMethod.POST)
+    public void getUserById(@RequestBody Course course) {
 
-        if(request.getSession().getAttribute("currentUser") == null){
+        if (!courseService.getCourseByName(course.getName())) {
 
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            return new ModelAndView("createCourse", "coaches", employeeService.getAllCoaches());
-        }
-    }
-
-    @RequestMapping(value="/create", method= RequestMethod.POST)
-    public ModelAndView createCourse(@RequestParam String name,
-                                     @RequestParam int coachId) {
-
-        Employee employee = employeeService.getEmployeeById(coachId);
-        if(!courseService.getCourseByName(name)){
-
-            courseService.createCourse(new Course(name, employee));
+            courseService.createCourse(course);
         }
 
-        return new ModelAndView("redirect:/courses/");
     }
 
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)

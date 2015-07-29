@@ -14,6 +14,13 @@ angular.module('userManagement')
         EmployeeService.getEmployees(function(data) {
 
             $scope.employees = EmployeeService.getAllCoaches(data);
-            console.log($scope.employees);
         });
+
+        $scope.addNewCourse = function(course) {
+            console.log(course);
+
+            CourseService.addCourse(course, function() {
+                $route.reload();
+            })
+        }
     });

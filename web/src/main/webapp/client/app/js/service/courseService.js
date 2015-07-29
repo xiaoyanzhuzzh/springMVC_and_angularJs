@@ -19,7 +19,6 @@ angular.module('userManagement')
                 data:{
                     id: null,
                     name: course.name,
-                    password: course.password,
                     employee: course.employee
                 },
                 success: function() {
