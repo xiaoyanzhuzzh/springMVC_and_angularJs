@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('EmployeeController', function ($scope, EmployeeService) {
+    .controller('EmployeeController', function ($scope, $route, EmployeeService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
@@ -14,9 +14,7 @@ angular.module('userManagement')
 
             EmployeeService.addEmployee(employee, function() {
 
-                EmployeeService.getEmployees(function(data) {
-                    $scope.employees = data;
-                })
+                $route.reload();
             });
         };
 
@@ -38,9 +36,7 @@ angular.module('userManagement')
 
             EmployeeService.updateEmployee(employee, function() {
 
-                EmployeeService.getEmployees(function(data) {
-                    $scope.employees = data;
-                })
+                $route.reload();
             });
 
             $scope.showUpdateEmployee = false;

@@ -28,11 +28,14 @@ angular.module('userManagement')
             });
         }
 
-        function deleteUserData(id) {
+        function deleteUserData(id, callback) {
 
             $http({
                 method: 'DELETE',
-                url: '/web/api/users/' + id
+                url: '/web/api/users/' + id,
+                success: function() {
+                    callback();
+                }
             });
         }
 
@@ -67,9 +70,9 @@ angular.module('userManagement')
             addUserData(user, callback);
         };
 
-        this.deleteUser = function(id) {
+        this.deleteUser = function(id, callback) {
 
-            deleteUserData(id);
+            deleteUserData(id, callback);
         };
 
         this.updateUser = function(user, callback) {
