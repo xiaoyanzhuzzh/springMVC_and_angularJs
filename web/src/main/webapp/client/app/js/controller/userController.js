@@ -39,7 +39,35 @@ angular.module('userManagement')
             $route.reload();
         };
 
-        $scope.showUpdateUser = true;
+        $scope.showUpdateUser = false;
+        $scope.updateCurrentUser = function(user) {
+
+            $scope.showUpdateUser = true;
+            $scope.currentUser = {
+                id: user.id,
+                name: user.name,
+                password: user.password,
+                employee: user.employee
+            }
+        };
+
+        $scope.updateUser = function(currentUser) {
+            console.log(currentUser);
+
+            UserService.updateUser(currentUser, function() {
+
+
+                $location.path("#/users");
+                $route.reload();
+            });
+
+            $scope.showUpdateUser = false;
+        };
+
+        $scope.cancelUpdateUser = function() {
+            $scope.showUpdateUser = false;
+        }
+
 
 
     });

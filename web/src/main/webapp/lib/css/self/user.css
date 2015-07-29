@@ -17,10 +17,16 @@
 .addUserDiv label {
     color: orangered;
 }
+
+#updateUserDiv {
+    display: inline-block;
+    width: 450px;
+}
+
 #updateUserForm {
     display: inline-block;
     vertical-align: top;
-    margin: 0 100px;
+    padding: 0 50px 0 150px;
 }
 
 .updateUserDiv {
@@ -42,6 +48,4 @@
 #userTable {
     display: inline-block;
     vertical-align: top;
-    width: 700px;
-    padding: 0;
 }

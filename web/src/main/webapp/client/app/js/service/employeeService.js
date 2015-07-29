@@ -15,7 +15,8 @@ angular.module('userManagement')
         function addEmployeeData(employee, callback) {
 
             $http({
-                method: 'POST', url: '/web/api/employees',
+                method: 'POST',
+                url: '/web/api/employees',
                 data:{
                     id: null,
                     name: employee.name,
@@ -44,6 +45,8 @@ angular.module('userManagement')
                     email: employee.email
                 },
                 success: function() {
+                    console.log("sdfghjkl");
+
                     callback();
                 }
             })
