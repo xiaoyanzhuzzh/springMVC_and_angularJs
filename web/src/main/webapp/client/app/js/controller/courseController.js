@@ -19,6 +19,7 @@ angular.module('userManagement')
         $scope.addNewCourse = function(course) {
 
             CourseService.addCourse(course, function() {
+                
                 $route.reload();
             })
         };
@@ -34,11 +35,17 @@ angular.module('userManagement')
         };
 
         $scope.updateCourse = function(currentCourse) {
-            console.log(currentCourse.employee);
 
             CourseService.updateCourse(currentCourse, function () {
 
                 $route.reload();
             });
-        }
+        };
+
+        $scope.deleteCurrentCourse = function(course) {
+            CourseService.deleteCourse(course.id, function() {
+
+                $route.reload();
+            })
+        };
     });
