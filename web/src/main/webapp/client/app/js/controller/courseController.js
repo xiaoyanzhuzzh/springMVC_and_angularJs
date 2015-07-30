@@ -19,7 +19,7 @@ angular.module('userManagement')
         $scope.addNewCourse = function(course) {
 
             CourseService.addCourse(course, function() {
-                
+
                 $route.reload();
             })
         };
