@@ -22,6 +22,10 @@ angular
                 templateUrl: '/web/client/app/view/customer.html',
                 controller: 'CustomerController'
             })
+            .when('/schedules', {
+                templateUrl: '/web/client/app/view/schedule.html',
+                controller: 'ScheduleController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

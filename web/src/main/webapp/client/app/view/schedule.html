@@ -1,10 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="addUserDiv">
+    <form id="addUserForm">
+        <div class="addUserDiv">
+            <label>姓名：</label>
+            <select ng-model="user.employee" ng-options="employee as employee.name for employee in employees">
+                <option value="">-----请选择-----</option>
+            </select>
+        </div>
+        <div class="addUserDiv">
+            <label for="userName">用户：</label>
+            <input id="userName" ng-model="user.name"></div>
+        <div class="addUserDiv">
+            <label for="userPassword">密码：</label>
+            <input id="userPassword" type="password" ng-model="user.password"></div>
+        <div class="addUserDiv">
+            <button id="addUserButton" ng-click="addNewUser(user)">添加</button>
+            <button id="cancelAddUserButton" type="reset">重置</button>
+        </div>
+    </form>
+</div>
+<div>
+    <div id="updateUserDiv">
+        <form id="updateUserForm" ng-show="showUpdateUser">
+            <div class="updateUserDiv" ng-show="false">
+                <label for="id">Id：</label>
+                <input id="id" type="text" ng-model="currentUser.id">
+            </div>
+            <div class="updateUserDiv" ng-show="false">
+                <label for="employeeId">员工id</label>
+                <input id="employeeId" type="text" ng-model="currentUser.name">
+            </div>
+            <div class="updateUserDiv">
+                <label for="nickname">用户名</label>
+                <input id="nickname" type="text" ng-model="currentUser.name">
+            </div>
+            <div class="updateUserDiv">
+                <label for="name">姓名：</label>
+                <input id="name" type="text" ng-model="currentUser.employee.name">
+            </div>
+            <div class="updateUserDiv">
+                <label for="password">密码：</label>
+                <input id="password" type="password" ng-model="currentUser.password">
+            </div>
+            <div class="updateUserDiv">
+                <label>性别：</label>
+                <input type="radio" ng-model="currentUser.employee.gender" value="male"> 男
+                <input type="radio" ng-model="currentUser.employee.gender" value="female"> 女
+            </div>
+            <div class="updateUserDiv">
+                <label>职位：</label>
+                <input type="radio" ng-model="currentUser.employee.role" value="coach"> coach
+                <input type="radio" ng-model="currentUser.employee.role" value="ops"> ops
+                <input type="radio" ng-model="currentUser.employee.role" value="hr"> hr
+            </div>
+            <div class="updateUserDiv">
+                <label for="age">年龄：</label>
+                <input type="text" id="age" ng-model="currentUser.employee.age">
+            </div>
+            <div class="updateUserDiv">
+                <label for="email">邮箱：</label>
+                <input type="email" id="email" ng-model="currentUser.employee.email">
+            </div>
+            <div class="updateUserDiv">
+                <button id="updateUserButton" ng-click="updateUser(currentUser)">修改</button>
+                <button id="cancelUpdateUserButton" ng-click="cancelUpdateUser()">取消</button>
+            </div>
+        </form>
+    </div>
+    <table id="scheduleTable" cellspacing="0">
+        <caption>课表</caption>
+        <tr>
+            <th>课程名</th>
+            <th>教练</th>
+            <th>时间</th>
+            <th>顾客</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="schedule in schedules">
+            <td class="row" ng-show="false">{{schedule.id}}</td>
+            <td class="row" ng-show="false">{{schedule.course.id}}</td>
+            <td class="row" ng-show="false">{{schedule.customer.id}}</td>
+            <td class="row" ng-show="false">{{schedule.course.employee.id}}</td>
+            <td class="row">{{schedule.course.name}}</td>
+            <td class="row">{{schedule.course.employee.name}}</td>
+            <td class="row">{{schedule.time}}</td>
+            <td class="row">{{schedule.customer.name}}</td>
+            <td class="row">
+                <button type="button" ng-click="updateCurrentSchedule(schedule)">修改</button>
+                <button type="button" ng-click="deleteCurrentSchedule(user.id)">删除</button>
+            </td>
+        </tr>
+    </table>
 
-</body>
-</html>
+
+    <!--<div class="modalDialog" id="deleteUserModal" ng-show="showDeleteUserModal">-->
+    <!--<div>-->
+    <!--<a href="#closeDeleteUserModal" title="Close" class="close">X</a>-->
+    <!--<h2>Modal Box</h2>-->
+    <!--<p>确认删除这条用户信息吗？</p>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+

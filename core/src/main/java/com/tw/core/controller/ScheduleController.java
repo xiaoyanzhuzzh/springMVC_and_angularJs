@@ -3,6 +3,7 @@ package com.tw.core.controller;
 import com.google.gson.Gson;
 import com.tw.core.entity.*;
 import com.tw.core.service.*;
+import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,25 +27,12 @@ public class ScheduleController {
     @Autowired
     private CustomerService customerService;
 
+    private JSONSerializer serializer = new JSONSerializer();
     @RequestMapping(method=RequestMethod.GET)
-    public ModelAndView getSchedules(HttpServletRequest request) {
+    public @ResponseBody String getSchedules() {
 
-        if(request.getSession().getAttribute("currentUser") == null) {
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            List<Schedule> schedules = scheduleService.getSchedules();
-            List<Schedule> publicSchedules = scheduleService.getPublicSchedules(schedules);
-            List<Schedule> privateSchedules = scheduleService.getPrivateSchedules(schedules);
-
-
-            ModelAndView modelAndView = new ModelAndView("schedules");
-
-            modelAndView.addObject("publicSchedules", publicSchedules);
-            modelAndView.addObject("privateSchedules", privateSchedules);
-            return modelAndView;
-        }
+        List<Schedule> schedules = scheduleService.getSchedules();
+        return serializer.include("course").include("customer").serialize(schedules);
     }
 
     @RequestMapping(value="/create", method=RequestMethod.GET)
