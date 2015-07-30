@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div id="addCustomerDiv">
+    <form id="addCustomerForm">
+        <div class="addCustomerDiv">
+            <label>教练：</label>
+            <select ng-model="course.employee" ng-options="employee as employee.name for employee in employees">
+                <option value="">-----请选择-----</option>
+            </select>
+        </div>
+        <div class="addCustomerDiv">
+            <label for="courseName">课程：</label>
+            <input id="courseName" ng-model="course.name"></div>
+        <div class="addCustomerDiv">
+            <button id="addCustomerButton" ng-click="addNewCustomer(course)">添加</button>
+            <button id="cancelAddCustomerButton" type="reset">重置</button>
+        </div>
+    </form>
+</div>
+<div>
+    <div id="updateCustomerDiv">
+        <form id="updateCustomerForm" ng-show="showUpdateCustomer">
+            <div class="updateCustomerDiv" ng-show="false">
+                <label for="id">Id：</label>
+                <input id="id" type="text" ng-model="currentCustomer.id">
+            </div>
+            <div class="updateCustomerDiv">
+                <label for="name">名称：</label>
+                <input id="name" type="text" ng-model="currentCustomer.name">
+            </div>
+            <div class="updateCustomerDiv">
+                <label>教练：</label>
+                <select id="dropdown" name="coachId" ng-model="currentCustomer.employee">
+                    <option ng-repeat="employee in employees" value="{{employee}}">{{employee.name}}</option>
+                </select>
+            </div>
+            <div class="updateCustomerDiv">
+                <button id="updateCustomerButton" ng-click="updateCustomer(currentCustomer)">修改</button>
+                <button id="cancelUpdateCustomerButton" ng-click="cancelUpdateCustomer()">取消</button>
+            </div>
+        </form>
+    </div>
+    <table id="CustomerTable" cellspacing="0">
+        <caption></caption>
+        <tr>
+            <th>姓名</th>
+            <th>私人教练</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="customer in customers">
+            <td class="row" ng-show="false">{{customer.id}}</td>
+            <td class="row" ng-show="false">{{customer.employee.id}}</td>
+            <td class="row">{{customer.name}}</td>
+            <td class="row">{{customer.employee.name}}</td>
+            <td class="row">
+                <button type="button" ng-click="updateCurrentCustomer(customer)">修改</button>
+                <button type="button" ng-click="deleteCurrentCustomer(customer)">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
-</body>
-</html>

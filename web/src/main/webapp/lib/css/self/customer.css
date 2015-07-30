@@ -1,0 +1,51 @@
+#addCustomerDiv {
+    text-align: center;
+    width: 1440px;
+    height: 23px;
+    margin: 25px 0;
+}
+
+#addCustomerFrom {
+    display: inline-block;
+}
+
+.addCustomerDiv {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.addCustomerDiv label {
+    color: orangered;
+}
+
+#updateCustomerDiv {
+    display: inline-block;
+    width: 450px;
+}
+
+#updateCustomerForm {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 50px 0 150px;
+}
+
+.updateCustomerDiv {
+    padding: 5px 0;
+}
+
+.updateCustomerDiv:last-child {
+    padding: 10px 45px;
+}
+
+#updateCustomerButton {
+    color: teal;
+}
+
+#cancelAddCustomerButton {
+    color: darkred;
+}
+
+#CustomerTable {
+    display: inline-block;
+    vertical-align: top;
+}

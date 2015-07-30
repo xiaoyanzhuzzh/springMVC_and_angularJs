@@ -2,12 +2,12 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.*;
 import com.tw.core.service.*;
+import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,17 +21,13 @@ public class CustomerController {
     @Autowired
     private CourseService courseService;
 
+    private JSONSerializer serializer = new JSONSerializer();
+
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAllUsers(HttpServletRequest request){
+    public @ResponseBody String getAllUsers(){
 
-        if(request.getSession().getAttribute("currentUser") == null){
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            List<Customer> customers = customerService.getCustomers();
-            return new ModelAndView("customers", "customers", customers);
-        }
+        List<Customer> customers = customerService.getCustomers();
+        return  serializer.include("employee").serialize(customers);
     }
 
     @RequestMapping(value="/create", method = RequestMethod.GET)

@@ -1,3 +1,51 @@
-/**
- * Created by zhihuizhang on 7/30/15.
- */
+'use strict';
+
+angular.module('userManagement')
+    .controller('CustomerController', function ($scope, $route, CustomerService, EmployeeService) {
+
+        $scope.$emit('to-parent-itemsListActive');
+
+        $scope.customers = [];
+        CustomerService.getCustomers(function (data) {
+
+            $scope.customers = data;
+        });
+
+        EmployeeService.getEmployees(function(data) {
+
+            $scope.employees = EmployeeService.getAllCoaches(data);
+        });
+
+        $scope.addNewCustomer = function(customer) {
+
+            CustomerService.addcustomer(Customer, function() {
+
+                $route.reload();
+            })
+        };
+
+        $scope.showUpdateCustomer = false;
+        $scope.updateCurrentCustomer = function(customer) {
+            $scope.showUpdateCustomer = true;
+            $scope.currentCustomer = {
+                id: customer.id,
+                name: customer.name,
+                employee: customer.employee
+            }
+        };
+
+        $scope.updateCustomer = function(currentCustomer) {
+
+            CustomerService.updateCustomer(currentCustomer, function () {
+
+                $route.reload();
+            });
+        };
+
+        $scope.deleteCurrentCustomer = function(customer) {
+            CustomerService.deleteCustomer(customer.id, function() {
+
+                $route.reload();
+            })
+        };
+    });
