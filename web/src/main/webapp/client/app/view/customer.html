@@ -1,16 +1,10 @@
 <div id="addCustomerDiv">
     <form id="addCustomerForm">
         <div class="addCustomerDiv">
-            <label>教练：</label>
-            <select ng-model="course.employee" ng-options="employee as employee.name for employee in employees">
-                <option value="">-----请选择-----</option>
-            </select>
-        </div>
+            <label for="customerName">姓名：</label>
+            <input id="customerName" ng-model="customer.name"></div>
         <div class="addCustomerDiv">
-            <label for="courseName">课程：</label>
-            <input id="courseName" ng-model="course.name"></div>
-        <div class="addCustomerDiv">
-            <button id="addCustomerButton" ng-click="addNewCustomer(course)">添加</button>
+            <button id="addCustomerButton" ng-click="addNewCustomer(customer)">添加</button>
             <button id="cancelAddCustomerButton" type="reset">重置</button>
         </div>
     </form>

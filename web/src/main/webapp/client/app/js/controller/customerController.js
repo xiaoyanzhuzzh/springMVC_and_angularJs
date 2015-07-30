@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('CustomerController', function ($scope, $route, CustomerService, EmployeeService) {
+    .controller('CustomerController', function ($scope, $route, CustomerService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
@@ -11,14 +11,9 @@ angular.module('userManagement')
             $scope.customers = data;
         });
 
-        EmployeeService.getEmployees(function(data) {
-
-            $scope.employees = EmployeeService.getAllCoaches(data);
-        });
-
         $scope.addNewCustomer = function(customer) {
 
-            CustomerService.addcustomer(Customer, function() {
+            CustomerService.addCustomer(customer, function() {
 
                 $route.reload();
             })

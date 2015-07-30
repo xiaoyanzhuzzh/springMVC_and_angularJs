@@ -24,35 +24,16 @@ public class CustomerController {
     private JSONSerializer serializer = new JSONSerializer();
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody String getAllUsers(){
+    public @ResponseBody String getAllCustomers(){
 
         List<Customer> customers = customerService.getCustomers();
         return  serializer.include("employee").serialize(customers);
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.GET)
-    public ModelAndView getCreateCustomerPage(HttpServletRequest request){
+    @RequestMapping(method = RequestMethod.POST)
+    public void createCustomer(@RequestBody Customer customer) {
 
-        if(request.getSession().getAttribute("currentUser") == null){
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            ModelAndView modelAndView = new ModelAndView("createCustomer");
-            modelAndView.addObject("employees", employeeService.getAllCoaches());
-            modelAndView.addObject("courses", courseService.getCourses());
-
-            return modelAndView;
-        }
-    }
-
-    @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ModelAndView createCustomer(@RequestParam String name){
-
-        Customer customer = new Customer(name, null);
         customerService.createCustomer(customer);
-
-        return new ModelAndView("redirect:/customers/");
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)

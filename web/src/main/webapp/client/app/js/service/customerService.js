@@ -18,8 +18,7 @@ angular.module('userManagement')
                 url: '/web/api/customers',
                 data:{
                     id: null,
-                    name: customer.name,
-                    employee: customer.employee
+                    name: customer.name
                 },
                 success: function() {
                     callback();
