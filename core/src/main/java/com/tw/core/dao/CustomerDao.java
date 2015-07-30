@@ -63,4 +63,16 @@ public class CustomerDao {
 
         return customers.get(0);
     }
+
+    public void deleteCustomerById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        Customer customer = (Customer) session.load(Customer.class, id);
+        session.delete(customer);
+
+        session.getTransaction().commit();
+        session.close();
+    }
 }

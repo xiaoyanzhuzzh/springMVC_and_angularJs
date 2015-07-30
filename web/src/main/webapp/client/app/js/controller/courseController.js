@@ -9,18 +9,24 @@ angular.module('userManagement')
         CourseService.getCourses(function (data) {
 
             $scope.courses = data;
-        });
+            EmployeeService.getEmployees(function(empolyees) {
 
-        EmployeeService.getEmployees(function(data) {
-
-            $scope.employees = EmployeeService.getAllCoaches(data);
+                $scope.employees = EmployeeService.getAllCoaches(empolyees);
+            });
         });
 
         $scope.addNewCourse = function(course) {
 
             CourseService.addCourse(course, function() {
 
-                $route.reload();
+                CourseService.getCourses(function (data) {
+
+                    $scope.courses = data;
+                    EmployeeService.getEmployees(function(empolyees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(empolyees);
+                    });
+                });
             })
         };
 
@@ -38,14 +44,28 @@ angular.module('userManagement')
 
             CourseService.updateCourse(currentCourse, function () {
 
-                $route.reload();
+                CourseService.getCourses(function (data) {
+
+                    $scope.courses = data;
+                    EmployeeService.getEmployees(function(empolyees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(empolyees);
+                    });
+                });
             });
         };
 
         $scope.deleteCurrentCourse = function(course) {
             CourseService.deleteCourse(course.id, function() {
 
-                $route.reload();
+                CourseService.getCourses(function (data) {
+
+                    $scope.courses = data;
+                    EmployeeService.getEmployees(function(empolyees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(empolyees);
+                    });
+                });
             })
         };
     });

@@ -16,7 +16,7 @@
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <property name="connection.pool_size"
-                >10</property>
+                >1</property>
 
         <!-- SQL dialect -->
         <property name="dialect"

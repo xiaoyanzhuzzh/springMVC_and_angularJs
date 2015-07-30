@@ -20,7 +20,14 @@ angular.module('userManagement')
 
             UserService.addUser(user, function() {
 
-                $route.reload();
+                UserService.getUsers(function(data) {
+
+                    $scope.users = data;
+                    EmployeeService.getEmployeesWithoutAccount(data, function(employees) {
+
+                        $scope.employees = employees;
+                    });
+                });
             });
         };
 
@@ -28,7 +35,14 @@ angular.module('userManagement')
 
             UserService.deleteUser(id, function() {
 
-                $route.reload();
+                UserService.getUsers(function(data) {
+
+                    $scope.users = data;
+                    EmployeeService.getEmployeesWithoutAccount(data, function(employees) {
+
+                        $scope.employees = employees;
+                    });
+                });;
             });
         };
 
@@ -49,7 +63,14 @@ angular.module('userManagement')
 
             UserService.updateUser(currentUser, function() {
 
-                $route.reload();
+                UserService.getUsers(function(data) {
+
+                    $scope.users = data;
+                    EmployeeService.getEmployeesWithoutAccount(data, function(employees) {
+
+                        $scope.employees = employees;
+                    });
+                });
             });
 
             $scope.showUpdateUser = false;

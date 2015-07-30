@@ -1,7 +1,6 @@
 package com.tw.core.controller;
 
 import com.tw.core.entity.*;
-import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.*;
 import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +38,9 @@ public class CustomerController {
         customerService.updateCustomer(customer);
     }
 
-    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
-    public ModelAndView getUpdateCustomerPage(@PathVariable int id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable int id) {
 
-        return new ModelAndView("updateCustomer", "customer", customerService.getCustomerById(id));
-    }
-
-    @RequestMapping(value="/update", method = RequestMethod.POST)
-    public ModelAndView getUpdateCustomerPage(@RequestParam int id,
-                                          @RequestParam String name){
-
-
-        customerService.updateCustomer(new Customer(id, name, null));
-        return new ModelAndView("redirect:/customers");
+        customerService.deleteCustomerById(id);
     }
 }

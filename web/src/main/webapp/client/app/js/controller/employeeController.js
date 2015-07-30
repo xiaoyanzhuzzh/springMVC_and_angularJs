@@ -14,7 +14,9 @@ angular.module('userManagement')
 
             EmployeeService.addEmployee(employee, function() {
 
-                $route.reload();
+                EmployeeService.getEmployees(function(data) {
+                    $scope.employees = data;
+                });
             });
         };
 
@@ -36,7 +38,9 @@ angular.module('userManagement')
 
             EmployeeService.updateEmployee(employee, function() {
 
-                $route.reload();
+                EmployeeService.getEmployees(function(data) {
+                    $scope.employees = data;
+                });
             });
 
             $scope.showUpdateEmployee = false;

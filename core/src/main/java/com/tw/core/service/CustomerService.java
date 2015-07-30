@@ -38,4 +38,9 @@ public class CustomerService {
 
         return customerDao.getCustomerByEmployee(employee);
     }
+
+    public void deleteCustomerById(int id) {
+
+        customerDao.deleteCustomerById(id);
+    }
 }

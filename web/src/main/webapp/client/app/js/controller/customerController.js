@@ -5,23 +5,32 @@ angular.module('userManagement')
         //$scope.$emit('to-parent-itemsListActive');
 
         $scope.customers = [];
+        $scope.employees = [];
+
         CustomerService.getCustomers(function (data) {
 
             $scope.customers = data;
+            EmployeeService.getEmployees(function(employees) {
 
-        });
+                $scope.employees = EmployeeService.getAllCoaches(employees);
+            });
 
-        $scope.employees = [];
-        EmployeeService.getEmployees(function(data) {
-
-            $scope.employees = EmployeeService.getAllCoaches(data);
         });
 
         $scope.addNewCustomer = function(customer) {
 
             CustomerService.addCustomer(customer, function() {
 
-                $route.reload();
+                CustomerService.getCustomers(function (data) {
+
+                    $scope.customers = data;
+                    EmployeeService.getEmployees(function(employees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(employees);
+                    });
+
+                });
+
             })
         };
 
@@ -40,7 +49,16 @@ angular.module('userManagement')
 
             CustomerService.updateCustomer(currentCustomer, function () {
 
-                $route.reload();
+                CustomerService.getCustomers(function (data) {
+
+                    $scope.customers = data;
+                    EmployeeService.getEmployees(function(employees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(employees);
+                    });
+
+                });
+
             });
 
         };
@@ -48,7 +66,16 @@ angular.module('userManagement')
         $scope.deleteCurrentCustomer = function(customer) {
             CustomerService.deleteCustomer(customer.id, function() {
 
-                $route.reload();
+                CustomerService.getCustomers(function (data) {
+
+                    $scope.customers = data;
+                    EmployeeService.getEmployees(function(employees) {
+
+                        $scope.employees = EmployeeService.getAllCoaches(employees);
+                    });
+
+                });
+
             })
         };
     });
