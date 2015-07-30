@@ -17,10 +17,28 @@ angular.module('userManagement')
         });
 
         $scope.addNewCourse = function(course) {
-            console.log(course);
 
             CourseService.addCourse(course, function() {
                 $route.reload();
             })
+        };
+
+        $scope.showUpdateCourse = false;
+        $scope.updateCurrentCourse = function(course) {
+            $scope.showUpdateCourse = true;
+            $scope.currentCourse = {
+                id: course.id,
+                name: course.name,
+                employee: course.employee
+            }
+        };
+
+        $scope.updateCourse = function(currentCourse) {
+            console.log(currentCourse.employee);
+
+            CourseService.updateCourse(currentCourse, function () {
+
+                $route.reload();
+            });
         }
     });

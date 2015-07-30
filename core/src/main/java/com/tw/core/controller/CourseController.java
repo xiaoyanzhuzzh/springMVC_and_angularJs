@@ -2,6 +2,8 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.Course;
 import com.tw.core.entity.Employee;
+import com.tw.core.entity.User;
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.CourseService;
 import com.tw.core.service.EmployeeService;
 import flexjson.JSONSerializer;
@@ -39,6 +41,14 @@ public class CourseController {
         }
 
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateUser(@RequestBody Course course) {
+
+        course.setEmployee(course.getEmployee());
+        courseService.updateCourse(course);
+    }
+
 
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
     public ModelAndView getUpdateSchedulePage(@PathVariable int id,

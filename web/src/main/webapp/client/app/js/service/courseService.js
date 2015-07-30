@@ -44,11 +44,9 @@ angular.module('userManagement')
                 method: 'PUT',
                 url: '/web/api/courses/' + course.id,
                 data: {
-
                     id:  course.id,
                     name: course.name,
-                    password: course.password,
-                    employee: course.employee
+                    employee: JSON.parse(course.employee)
                 },
                 success: function() {
                     callback();

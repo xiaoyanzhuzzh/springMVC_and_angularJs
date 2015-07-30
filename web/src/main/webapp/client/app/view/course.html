@@ -23,13 +23,13 @@
                 <input id="id" type="text" ng-model="currentCourse.id">
             </div>
             <div class="updateCourseDiv">
-                <label for="name">名称</label>
+                <label for="name">名称：</label>
                 <input id="name" type="text" ng-model="currentCourse.name">
             </div>
             <div class="updateCourseDiv">
                 <label>教练：</label>
-                <select ng-model="currentCourse.employee" ng-options="employee as employee.name for employee in employees">
-                    <option value="">-----请选择-----</option>
+                <select id="dropdown" name="coachId" ng-model="currentCourse.employee">
+                    <option ng-repeat="employee in employees" value="{{employee}}">{{employee.name}}</option>
                 </select>
             </div>
             <div class="updateCourseDiv">
