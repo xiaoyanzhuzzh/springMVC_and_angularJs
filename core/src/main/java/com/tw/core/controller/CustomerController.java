@@ -1,13 +1,13 @@
 package com.tw.core.controller;
 
 import com.tw.core.entity.*;
+import com.tw.core.helper.EncryptionHelper;
 import com.tw.core.service.*;
 import flexjson.JSONSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -16,10 +16,6 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private CourseService courseService;
 
     private JSONSerializer serializer = new JSONSerializer();
 
@@ -34,6 +30,13 @@ public class CustomerController {
     public void createCustomer(@RequestBody Customer customer) {
 
         customerService.createCustomer(customer);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateCustomer(@RequestBody Customer customer) {
+
+        customer.setEmployee(customer.getEmployee());
+        customerService.updateCustomer(customer);
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
