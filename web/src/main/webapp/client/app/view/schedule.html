@@ -24,44 +24,27 @@
 <div>
     <div id="updateScheduleDiv">
         <form id="updateScheduleForm" ng-show="showUpdateSchedule">
-            <div class="updateScheduleDiv" ng-show="false">
-                <label for="id">Id：</label>
-                <input id="id" type="text" ng-model="currentSchedule.id">
-            </div>
-            <div class="updateScheduleDiv" ng-show="false">
-                <label for="employeeId">员工id</label>
-                <input id="employeeId" type="text" ng-model="currentSchedule.name">
+            <div class="updateScheduleDiv">
+                <label>教练：</label>
+                <select id="coach" name="coach" ng-model="currentSchedule.course.employee">
+                    <option ng-repeat="employee in employees" value="{{employee}}">{{employee.name}}</option>
+                </select>
             </div>
             <div class="updateScheduleDiv">
-                <label for="nickname">用户名</label>
-                <input id="nickname" type="text" ng-model="currentSchedule.name">
+                <label>课程：</label>
+                <select id="course" name="course" ng-model="currentCourse.employee">
+                    <option ng-repeat="employee in employees" value="{{employee}}">{{employee.name}}</option>
+                </select>
             </div>
             <div class="updateScheduleDiv">
-                <label for="name">姓名：</label>
-                <input id="name" type="text" ng-model="currentSchedule.employee.name">
+                <label>顾客：</label>
+                <select id="customer" name="customer" ng-model="currentCourse.employee">
+                    <option ng-repeat="employee in employees" value="{{employee}}">{{employee.name}}</option>
+                </select>
             </div>
             <div class="updateScheduleDiv">
-                <label for="password">密码：</label>
-                <input id="password" type="password" ng-model="currentSchedule.password">
-            </div>
-            <div class="updateScheduleDiv">
-                <label>性别：</label>
-                <input type="radio" ng-model="currentSchedule.employee.gender" value="male"> 男
-                <input type="radio" ng-model="currentSchedule.employee.gender" value="female"> 女
-            </div>
-            <div class="updateScheduleDiv">
-                <label>职位：</label>
-                <input type="radio" ng-model="currentSchedule.employee.role" value="coach"> coach
-                <input type="radio" ng-model="currentSchedule.employee.role" value="ops"> ops
-                <input type="radio" ng-model="currentSchedule.employee.role" value="hr"> hr
-            </div>
-            <div class="updateScheduleDiv">
-                <label for="age">年龄：</label>
-                <input type="text" id="age" ng-model="currentSchedule.employee.age">
-            </div>
-            <div class="updateScheduleDiv">
-                <label for="email">邮箱：</label>
-                <input type="email" id="email" ng-model="currentSchedule.employee.email">
+                <label for="time">时间：</label>
+                <input id="time" type="text" ng-model="currentSchedule.time">
             </div>
             <div class="updateScheduleDiv">
                 <button id="updateScheduleButton" ng-click="updateSchedule(currentSchedule)">修改</button>

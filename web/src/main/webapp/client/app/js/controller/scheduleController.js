@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('ScheduleController', function ($scope, $route, $filter, ScheduleService, CourseService, CustomerService) {
+    .controller('ScheduleController', function ($scope, $route, $filter, ScheduleService, CourseService, CustomerService, EmployeeService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
@@ -42,6 +42,11 @@ angular.module('userManagement')
                 employee: schedule.employee
             }
         };
+
+        EmployeeService.getEmployees(function(empolyees) {
+
+            $scope.employees = EmployeeService.getAllCoaches(empolyees);
+        });
 
         $scope.updateSchedule = function(currentSchedule) {
 
