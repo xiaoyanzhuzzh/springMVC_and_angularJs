@@ -44,13 +44,13 @@ public class Schedule {
         return time;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     public Course getCourse() {
         return course;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     public Customer getCustomer() {
         return customer;

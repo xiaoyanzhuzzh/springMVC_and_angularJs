@@ -37,7 +37,7 @@ public class Customer {
         return name;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     public Employee getEmployee() {
         return employee;

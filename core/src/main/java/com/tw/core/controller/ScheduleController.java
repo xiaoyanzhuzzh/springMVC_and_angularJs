@@ -45,35 +45,7 @@ public class ScheduleController {
             customerService.updateCustomer(customer);
             scheduleService.createSchedule(schedule);
         }
-
     }
-
-    @RequestMapping(value="/create", method=RequestMethod.GET)
-    public ModelAndView getCreateSchedulePage(HttpServletRequest request) {
-
-        if(request.getSession().getAttribute("currentUser") == null){
-
-            return new ModelAndView("redirect:/login");
-        } else {
-
-            List<Course> courses = courseService.getCourses();
-
-            return new ModelAndView("createSchedule", "courses", courseService.getPublicCourses(courses));
-        }
-    }
-
-//    @RequestMapping(value="/create", method=RequestMethod.POST)
-//    public ModelAndView createSchedule(@RequestParam int courseId,
-//                                       @RequestParam String time) {
-//
-//        Course course = courseService.getCourseById(courseId);
-//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-//
-//            scheduleService.createSchedule(new Schedule(time, course));
-//        }
-//
-//        return new ModelAndView("redirect:/schedules/");
-//    }
 
     @RequestMapping(value="/createPrivate", method= RequestMethod.GET)
     public ModelAndView getCreatePrivateCoursePage(HttpServletRequest request) {
@@ -138,6 +110,12 @@ public class ScheduleController {
             response.getWriter().write(schedulestr.toString());
     }
 
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public void deleteSchedule(@PathVariable int id) {
+
+        scheduleService.deleteScheduleById(id);
+    }
+
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public ModelAndView updateSchedule(@RequestParam int id,
                                        @RequestParam int courseId,
@@ -150,11 +128,5 @@ public class ScheduleController {
         }
 
         return new ModelAndView("redirect:/schedules/");
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteSchedule(@PathVariable int id){
-
-        scheduleService.deleteScheduleById(id);
     }
 }

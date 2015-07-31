@@ -28,11 +28,11 @@ angular.module('userManagement')
             });
         }
 
-        function deleteCourseData(id, callback) {
+        function deleteScheduleData(id, callback) {
 
             $http({
                 method: 'DELETE',
-                url: '/web/api/courses/' + id,
+                url: '/web/api/schedules/' + id,
                 success: function() {
                     callback();
                 }
@@ -89,9 +89,9 @@ angular.module('userManagement')
             addSchedulesData(schedules, callback);
         };
 
-        this.deleteCourse = function(id, callback) {
+        this.deleteSchedule = function(id, callback) {
 
-            deleteCourseData(id, callback);
+            deleteScheduleData(id, callback);
         };
 
         this.updateCourse = function(course, callback) {
