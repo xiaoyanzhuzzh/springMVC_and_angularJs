@@ -7,6 +7,12 @@
             </select>
         </div>
         <div class="addScheduleDiv">
+            <label>顾客：</label>
+            <select ng-model="schedule.customer" ng-options="customer as customer.name for customer in customers">
+                <option value="">-----请选择-----</option>
+            </select>
+        </div>
+        <div class="addScheduleDiv">
             <label for="userName">时间：</label>
             <input id="userName" type="date"  required ng-model="schedule.time"></div>
         <div class="addScheduleDiv">
