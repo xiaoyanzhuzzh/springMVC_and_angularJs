@@ -8,9 +8,9 @@
         </div>
         <div class="addScheduleDiv">
             <label for="userName">时间：</label>
-            <input id="userName" type="date" ng-model="schedule.time"></div>
+            <input id="userName" type="date"  required ng-model="schedule.time"></div>
         <div class="addScheduleDiv">
-            <button id="addScheduleButton" ng-click="addNewSchedule(user)">添加</button>
+            <button id="addScheduleButton" ng-click="addNewSchedule(schedule)">添加</button>
             <button id="cancelAddScheduleButton" type="reset">重置</button>
         </div>
     </form>

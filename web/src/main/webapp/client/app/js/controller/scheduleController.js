@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('ScheduleController', function ($scope, $route, ScheduleService, CourseService) {
+    .controller('ScheduleController', function ($scope, $route, $filter, ScheduleService, CourseService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
         $scope.publicSchedules = [];
+        $scope.schedule = {
+            time: new Date()
+        };
         ScheduleService.getSchedules(function(data) {
 
             $scope.schedules = data;
@@ -20,14 +23,6 @@ angular.module('userManagement')
 
             ScheduleService.addSchedule(schedule, function() {
 
-                ScheduleService.getSchedules(function (data) {
-
-                    $scope.schedules = data;
-                    EmployeeService.getEmployees(function(empolyees) {
-
-                        $scope.employees = EmployeeService.getAllCoaches(empolyees);
-                    });
-                });
             })
         };
 

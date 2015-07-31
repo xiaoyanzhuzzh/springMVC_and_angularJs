@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('userManagement')
-    .service('ScheduleService', function($http){
+    .service('ScheduleService', function($http, $filter){
 
         function getSchedulesData(callback) {
 
@@ -11,15 +11,16 @@ angular.module('userManagement')
                 });
         }
 
-        function addCourseData(course, callback) {
+        function addSchedulesData(schedule, callback) {
 
             $http({
                 method: 'POST',
-                url: '/web/api/courses',
+                url: '/web/api/schedules',
                 data:{
                     id: null,
-                    name: course.name,
-                    employee: course.employee
+                    course: schedule.course,
+                    time: $filter('date')(schedule.time, 'yyyy-MM-dd'),
+                    customer: schedule.customer || null
                 },
                 success: function() {
                     callback();
@@ -83,9 +84,9 @@ angular.module('userManagement')
             });
         };
 
-        this.addCourse = function(course, callback) {
+        this.addSchedule = function(schedules, callback) {
 
-            addCourseData(course, callback);
+            addSchedulesData(schedules, callback);
         };
 
         this.deleteCourse = function(id, callback) {

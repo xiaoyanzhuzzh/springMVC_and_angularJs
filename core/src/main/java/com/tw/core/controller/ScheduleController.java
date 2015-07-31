@@ -35,6 +35,19 @@ public class ScheduleController {
         return serializer.include("course").include("customer").serialize(schedules);
     }
 
+    @RequestMapping(method=RequestMethod.POST)
+    public void createSchedule(@RequestBody Schedule schedule) {
+
+        System.out.println("+++++++++++++++++++++++++++");
+        System.out.println(schedule);
+        System.out.println("+++++++++++++++++++++++++++");
+        if(!scheduleService.getScheduleByCourseAndTime(schedule.getCourse(), schedule.getTime())){
+
+            scheduleService.createSchedule(schedule);
+        }
+
+    }
+
     @RequestMapping(value="/create", method=RequestMethod.GET)
     public ModelAndView getCreateSchedulePage(HttpServletRequest request) {
 
@@ -49,18 +62,18 @@ public class ScheduleController {
         }
     }
 
-    @RequestMapping(value="/create", method=RequestMethod.POST)
-    public ModelAndView createSchedule(@RequestParam int courseId,
-                                       @RequestParam String time) {
-
-        Course course = courseService.getCourseById(courseId);
-        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
-
-            scheduleService.createSchedule(new Schedule(time, course));
-        }
-
-        return new ModelAndView("redirect:/schedules/");
-    }
+//    @RequestMapping(value="/create", method=RequestMethod.POST)
+//    public ModelAndView createSchedule(@RequestParam int courseId,
+//                                       @RequestParam String time) {
+//
+//        Course course = courseService.getCourseById(courseId);
+//        if(!scheduleService.getScheduleByCourseAndTime(course, time)){
+//
+//            scheduleService.createSchedule(new Schedule(time, course));
+//        }
+//
+//        return new ModelAndView("redirect:/schedules/");
+//    }
 
     @RequestMapping(value="/createPrivate", method= RequestMethod.GET)
     public ModelAndView getCreatePrivateCoursePage(HttpServletRequest request) {
