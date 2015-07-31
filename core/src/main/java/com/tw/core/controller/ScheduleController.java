@@ -38,11 +38,11 @@ public class ScheduleController {
     @RequestMapping(method=RequestMethod.POST)
     public void createSchedule(@RequestBody Schedule schedule) {
 
-        System.out.println("+++++++++++++++++++++++++++");
-        System.out.println(schedule);
-        System.out.println("+++++++++++++++++++++++++++");
         if(!scheduleService.getScheduleByCourseAndTime(schedule.getCourse(), schedule.getTime())){
 
+            Customer customer = customerService.getCustomerById(schedule.getCustomer().getId());
+            customer.setEmployee(schedule.getCourse().getEmployee());
+            customerService.updateCustomer(customer);
             scheduleService.createSchedule(schedule);
         }
 

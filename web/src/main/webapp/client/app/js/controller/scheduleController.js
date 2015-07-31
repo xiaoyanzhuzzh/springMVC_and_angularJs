@@ -10,7 +10,7 @@ angular.module('userManagement')
 
             time: new Date()
         };
-        
+
         ScheduleService.getSchedules(function(data) {
 
             $scope.schedules = data;
