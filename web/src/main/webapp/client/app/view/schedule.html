@@ -1,68 +1,65 @@
-<div id="addUserDiv">
-    <form id="addUserForm">
-        <div class="addUserDiv">
-            <label>姓名：</label>
-            <select ng-model="user.employee" ng-options="employee as employee.name for employee in employees">
+<div id="addScheduleDiv">
+    <form id="addScheduleForm">
+        <div class="addScheduleDiv">
+            <label>课程：</label>
+            <select ng-model="schedule.course" ng-options="course as course.name for course in courses">
                 <option value="">-----请选择-----</option>
             </select>
         </div>
-        <div class="addUserDiv">
-            <label for="userName">用户：</label>
-            <input id="userName" ng-model="user.name"></div>
-        <div class="addUserDiv">
-            <label for="userPassword">密码：</label>
-            <input id="userPassword" type="password" ng-model="user.password"></div>
-        <div class="addUserDiv">
-            <button id="addUserButton" ng-click="addNewUser(user)">添加</button>
-            <button id="cancelAddUserButton" type="reset">重置</button>
+        <div class="addScheduleDiv">
+            <label for="userName">时间：</label>
+            <input id="userName" type="date" ng-model="schedule.time"></div>
+        <div class="addScheduleDiv">
+            <button id="addScheduleButton" ng-click="addNewSchedule(user)">添加</button>
+            <button id="cancelAddScheduleButton" type="reset">重置</button>
         </div>
     </form>
 </div>
 <div>
-    <div id="updateUserDiv">
-        <form id="updateUserForm" ng-show="showUpdateUser">
-            <div class="updateUserDiv" ng-show="false">
+    <div id="updateScheduleDiv">
+        <form id="updateScheduleForm" ng-show="showUpdateSchedule">
+            <div class="updateScheduleDiv" ng-show="false">
                 <label for="id">Id：</label>
-                <input id="id" type="text" ng-model="currentUser.id">
+                <input id="id" type="text" ng-model="currentSchedule.id">
             </div>
-            <div class="updateUserDiv" ng-show="false">
+            <div class="updateScheduleDiv" ng-show="false">
                 <label for="employeeId">员工id</label>
-                <input id="employeeId" type="text" ng-model="currentUser.name">
+                <input id="employeeId" type="text" ng-model="currentSchedule.name">
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label for="nickname">用户名</label>
-                <input id="nickname" type="text" ng-model="currentUser.name">
+                <input id="nickname" type="text" ng-model="currentSchedule.name">
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label for="name">姓名：</label>
-                <input id="name" type="text" ng-model="currentUser.employee.name">
+                <input id="name" type="text" ng-model="currentSchedule.employee.name">
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label for="password">密码：</label>
-                <input id="password" type="password" ng-model="currentUser.password">
+                <input id="password" type="password" ng-model="currentSchedule.password">
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label>性别：</label>
-                <input type="radio" ng-model="currentUser.employee.gender" value="male"> 男
-                <input type="radio" ng-model="currentUser.employee.gender" value="female"> 女
+                <input type="radio" ng-model="currentSchedule.employee.gender" value="male"> 男
+                <input type="radio" ng-model="currentSchedule.employee.gender" value="female"> 女
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label>职位：</label>
-                <input type="radio" ng-model="currentUser.employee.role" value="coach"> coach
-                <input type="radio" ng-model="currentUser.employee.role" value="ops"> ops
-                <input type="radio" ng-model="currentUser.employee.role" value="hr"> hr
+                <input type="radio" ng-model="currentSchedule.employee.role" value="coach"> coach
+                <input type="radio" ng-model="currentSchedule.employee.role" value="ops"> ops
+                <input type="radio" ng-model="currentSchedule.employee.role" value="hr"> hr
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label for="age">年龄：</label>
-                <input type="text" id="age" ng-model="currentUser.employee.age">
+                <input type="text" id="age" ng-model="currentSchedule.employee.age">
             </div>
-            <div class="updateUserDiv">
+            <div class="updateScheduleDiv">
                 <label for="email">邮箱：</label>
-                <input type="email" id="email" ng-model="currentUser.employee.email">
+                <input type="email" id="email" ng-model="currentSchedule.employee.email">
             </div>
-            <div class="updateUserDiv">
-                <button id="updateUserButton" ng-click="updateUser(currentUser)">修改</button>
-                <button id="cancelUpdateUserButton" ng-click="cancelUpdateUser()">取消</button>
+            <div class="updateScheduleDiv">
+                <button id="updateScheduleButton" ng-click="updateSchedule(currentSchedule)">修改</button>
+                <button id="cancelUpdateScheduleButton" ng-click="cancelUpdateSchedule()">取消</button>
             </div>
         </form>
     </div>
@@ -86,7 +83,7 @@
             <td class="row">{{schedule.customer.name}}</td>
             <td class="row">
                 <button type="button" ng-click="updateCurrentSchedule(schedule)">修改</button>
-                <button type="button" ng-click="deleteCurrentSchedule(user.id)">删除</button>
+                <button type="button" ng-click="deleteCurrentSchedule(Schedule.id)">删除</button>
             </td>
         </tr>
     </table>

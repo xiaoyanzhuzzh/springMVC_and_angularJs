@@ -9,10 +9,11 @@ angular.module('userManagement')
         CourseService.getCourses(function (data) {
 
             $scope.courses = data;
-            EmployeeService.getEmployees(function(empolyees) {
+        });
 
-                $scope.employees = EmployeeService.getAllCoaches(empolyees);
-            });
+        EmployeeService.getEmployees(function(empolyees) {
+
+            $scope.employees = EmployeeService.getAllCoaches(empolyees);
         });
 
         $scope.addNewCourse = function(course) {
@@ -22,10 +23,6 @@ angular.module('userManagement')
                 CourseService.getCourses(function (data) {
 
                     $scope.courses = data;
-                    EmployeeService.getEmployees(function(empolyees) {
-
-                        $scope.employees = EmployeeService.getAllCoaches(empolyees);
-                    });
                 });
             })
         };

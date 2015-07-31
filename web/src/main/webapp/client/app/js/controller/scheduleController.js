@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('userManagement')
-    .controller('ScheduleController', function ($scope, $route, ScheduleService, EmployeeService) {
+    .controller('ScheduleController', function ($scope, $route, ScheduleService, CourseService) {
 
         $scope.$emit('to-parent-itemsListActive');
 
@@ -11,18 +11,18 @@ angular.module('userManagement')
             $scope.schedules = data;
         });
 
-        EmployeeService.getEmployees(function(empolyees) {
+        CourseService.getCourses(function(data) {
 
-            $scope.employees = EmployeeService.getAllCoaches(empolyees);
+            $scope.courses = data;
         });
 
-        $scope.addNewCourse = function(course) {
+        $scope.addNewSchedule = function(schedule) {
 
-            CourseService.addCourse(course, function() {
+            ScheduleService.addSchedule(schedule, function() {
 
-                CourseService.getCourses(function (data) {
+                ScheduleService.getSchedules(function (data) {
 
-                    $scope.courses = data;
+                    $scope.schedules = data;
                     EmployeeService.getEmployees(function(empolyees) {
 
                         $scope.employees = EmployeeService.getAllCoaches(empolyees);
@@ -31,23 +31,23 @@ angular.module('userManagement')
             })
         };
 
-        $scope.showUpdateCourse = false;
-        $scope.updateCurrentCourse = function(course) {
-            $scope.showUpdateCourse = true;
-            $scope.currentCourse = {
-                id: course.id,
-                name: course.name,
-                employee: course.employee
+        $scope.showUpdateSchedule = false;
+        $scope.updateCurrentSchedule = function(schedule) {
+            $scope.showUpdateSchedule = true;
+            $scope.currentSchedule = {
+                id: schedule.id,
+                name: schedule.name,
+                employee: schedule.employee
             }
         };
 
-        $scope.updateCourse = function(currentCourse) {
+        $scope.updateSchedule = function(currentSchedule) {
 
-            CourseService.updateCourse(currentCourse, function () {
+            ScheduleService.updateSchedule(currentSchedule, function () {
 
-                CourseService.getCourses(function (data) {
+                ScheduleService.getSchedules(function (data) {
 
-                    $scope.courses = data;
+                    $scope.schedules = data;
                     EmployeeService.getEmployees(function(empolyees) {
 
                         $scope.employees = EmployeeService.getAllCoaches(empolyees);
@@ -56,12 +56,12 @@ angular.module('userManagement')
             });
         };
 
-        $scope.deleteCurrentCourse = function(course) {
-            CourseService.deleteCourse(course.id, function() {
+        $scope.deleteCurrentSchedule = function(schedule) {
+            ScheduleService.deleteSchedule(schedule.id, function() {
 
-                CourseService.getCourses(function (data) {
+                ScheduleService.getSchedules(function (data) {
 
-                    $scope.courses = data;
+                    $scope.schedules = data;
                     EmployeeService.getEmployees(function(empolyees) {
 
                         $scope.employees = EmployeeService.getAllCoaches(empolyees);

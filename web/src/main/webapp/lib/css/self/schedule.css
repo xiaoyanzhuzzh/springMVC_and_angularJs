@@ -1,0 +1,51 @@
+#addScheduleDiv {
+    text-align: center;
+    width: 1440px;
+    height: 23px;
+    margin: 25px 0;
+}
+
+#addScheduleFrom {
+    display: inline-block;
+}
+
+.addScheduleDiv {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.addScheduleDiv label {
+    color: orangered;
+}
+
+#updateScheduleDiv {
+    display: inline-block;
+    width: 450px;
+}
+
+#updateScheduleForm {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 50px 0 150px;
+}
+
+.updateScheduleDiv {
+    padding: 5px 0;
+}
+
+.updateScheduleDiv:last-child {
+    padding: 10px 45px;
+}
+
+#updateScheduleButton {
+    color: teal;
+}
+
+#cancelAddScheduleButton {
+    color: darkred;
+}
+
+#scheduleTable {
+    display: inline-block;
+    vertical-align: top;
+}
