@@ -15,7 +15,6 @@ angular.module('userManagement')
 
             $scope.schedules = data;
         });
-        
 
         CourseService.getCourses(function(data) {
 
